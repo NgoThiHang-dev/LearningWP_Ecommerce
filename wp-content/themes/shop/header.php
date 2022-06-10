@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/libs/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/main.css">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/category.css">
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/single.css">
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/css/responsive.css">
 </head>
 

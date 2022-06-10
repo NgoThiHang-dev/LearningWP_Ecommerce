@@ -1,84 +1,60 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 order-lg-0 order-1">
-    <div class="sidebar">
-        <div class="category-box">
-            <h3>Danh mục sản phẩm</h3>
-            <div class="content-cat">
-                <ul>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Điện thoại</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Máy tính bảng</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">laptop</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Apple</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Đồng hồ thông minh</a>
-                    </li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Thiết bị đeo tay</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Camera</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Tivi</a></li>
-                    <li><i class="fa fa-angle-right"></i> <a href="#">Sản phẩm khác</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="widget">
-            <h3>
-                <i class="fa fa-bars"></i>
-                Tin tức
-            </h3>
-            <div class="content-w">
-                <ul>
-                    <li>
-                        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/news.jpg" alt=""></a>
-                        <h4><a href="#">Thương hiệu đồng hồ thông minh Sinophy của nước nào?</a>
-                        </h4>
-                        <div class="clear"></div>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/news.jpg" alt=""></a>
-                        <h4><a href="#">Thương hiệu đồng hồ thông minh Sinophy của nước nào?</a>
-                        </h4>
-                        <div class="clear"></div>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/news.jpg" alt=""></a>
-                        <h4><a href="#">Thương hiệu đồng hồ thông minh Sinophy của nước nào?</a>
-                        </h4>
-                        <div class="clear"></div>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/news.jpg" alt=""></a>
-                        <h4><a href="#">Thương hiệu đồng hồ thông minh Sinophy của nước nào?</a>
-                        </h4>
-                        <div class="clear"></div>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/news.jpg" alt=""></a>
-                        <h4><a href="#">Thương hiệu đồng hồ thông minh Sinophy của nước nào?</a>
-                        </h4>
-                        <div class="clear"></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="widget">
-            <h3>
-                <i class="fa fa-bars"></i>
-                Quảng cáo
-            </h3>
-            <div class="content-banner">
-                <a href="#">
-                    <img src="<?php bloginfo('stylesheet_directory'); ?>/images/banner.png" alt="">
-                </a>
-            </div>
-        </div>
-        <div class="widget">
-            <h3>
-                <i class="fa fa-facebook"></i>
-                Facebook
-            </h3>
-            <div class="content-fb">
-                <div class="fb-page" data-href="https://www.facebook.com/huykiradotnet/" data-tabs="timeline"
-                    data-width="" data-height="200" data-small-header="false" data-adapt-container-width="true"
-                    data-hide-cover="false" data-show-facepile="true">
-                </div>
-            </div>
+<div class="sidebar">
+    <div class="category-box">
+        <h3>Danh mục sản phẩm</h3>
+        <div class="content-cat">
+            <ul>
+                <?php
+                        $args = array(
+                            'type'      => 'product',
+                            'child_of'  => 0,
+                            'hide_empty' => 0,
+                            'taxonomy' => 'product_cat'
+                        );
+                        $categories = get_categories( $args );
+                        foreach ( $categories as $category ) { ?>
+
+                <li>
+                    <i class="fa fa-angle-right"></i>
+                    <a href="<?php echo get_term_link($category->slug, 'product_cat');?>">
+                        <?php echo $category->name; ?>
+                    </a>
+                </li>
+                <?php } ?>
+            </ul>
         </div>
     </div>
+    <div class="widget">
+        <h3>
+            <i class="fa fa-bars"></i>
+            Tin tức
+        </h3>
+        <div class="content-w">
+            <ul>
+                <?php $args = array( 
+                        'post_status' =>'publish',
+                        'post_type' => 'post',
+                        'posts_per_page' => 5,
+                        'cat' => 1); 
+                    ?>
+                <?php $getposts = new WP_query( $args);?>
+                <?php global $wp_query; $wp_query->in_the_loop = true; ?>
+                <?php while ($getposts->have_posts()) : $getposts->the_post(); ?>
+                <li>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail(); ?>
+                    </a>
+                    <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    </h4>
+                    <div class="clear"></div>
+                </li>
+                <?php endwhile; wp_reset_postdata(); ?>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 
+        1. Them widget tren admin
+        2. Lay sidebar ra ngoai giao dien -->
+    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('sidebar-home') ) : ?><?php endif; ?>
+
 </div>
