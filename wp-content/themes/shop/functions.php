@@ -30,6 +30,14 @@ function initTheme(){
             'before_title'  => '<h3><i class="fa fa-bars"></i>', // The mo de tao tieu de chung cho tat ca cac Widget nam trong Sidebar nay
             'after_title'   => '</h3>', // Dong the tieu de
         ));
+        register_sidebar(array(
+            'name'  => __('Cột bên trên', 'text_domain'), // Ten sidebar hien thi trong admin
+            'id' => 'sidebar-top', // ID cua sidebar khong duoc trung, dung de hien thi SB
+            'before_widget' => '<div class="widget">', // Ban co the them Class cho SB vao day
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3><i class="fa fa-bars"></i>', // The mo de tao tieu de chung cho tat ca cac Widget nam trong Sidebar nay
+            'after_title'   => '</h3>', // Dong the tieu de
+        ));
     }
 
     function setpostview($postID){
@@ -107,3 +115,17 @@ function percentSale($price, $price_sale){
     $percent = 100 - $sale;
     return number_format($percent);
 }
+
+// xoa breadcrumbs
+function custom_remove_action_woo(){
+    remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+}
+
+add_action('init', 'custom_remove_action_woo');
+
+// them image vao woo
+// add_action('woocommerce_before_main_content', 'add_image_head_product_list', 40);
+// function add_image_head_product_list(){
+//     echo '<img src="https://dlu.edu.vn/wp-content/uploads/2021/02/banner-bac-sau-dai-hox-scaled.jpg" alt="banner" />';
+// }
+

@@ -14,7 +14,7 @@
  * @package     WooCommerce\Templates
  * @version     1.6.4
  */
-
+// chi tiết sản phẩm
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }

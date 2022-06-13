@@ -464,4 +464,23 @@ footer .copyright {
 footer .copyright p {
   margin-bottom: 0;
 }
-/*# sourceMappingURL=main.css.map */
+
+/* breadcrumb */
+
+.breadcrumbs {
+  padding: 10px;
+  background: #ededed;
+}
+
+p#breadcrumbs {
+  font-size: 14px;
+  margin-top: 1rem;
+}
+
+p.breadcrumbs .fa {
+  margin: 0 3px;
+}
+
+.category-product-page {
+  margin: 30px 0px;
+}

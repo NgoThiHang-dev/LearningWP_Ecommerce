@@ -5,14 +5,13 @@
             <?php echo get_the_post_thumbnail(get_the_ID(), 'full', array( 'class' =>'thumnail') ); ?>
         </a>
         <!-- sale product -->
-        <?php
-                                            if($product->is_on_sale()){?>
-        <span class="sale">Giảm
-            <?php echo percentSale($product->get_regular_price(), $product->get_sale_price()); ?>%</span>
+        <?php if($product->is_on_sale()){?>
+            <span class="sale">Giảm
+                <?php echo percentSale($product->get_regular_price(), $product->get_sale_price()); ?>%</span>
         <?php } ?>
         <!-- end sale product -->
         <div class="action">
-            <a href="?add_to_card=<?php the_ID(); ?>" class="buy">
+            <a href="?add-to-cart=<?php the_ID(); ?>" class="buy">
                 <i class="fa fa-cart-plus"></i>Mua ngay
             </a>
             <a href="<?php the_permalink(); ?>" class="like">

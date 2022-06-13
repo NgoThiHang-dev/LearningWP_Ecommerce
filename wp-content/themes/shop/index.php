@@ -180,5 +180,4 @@
     nonce="o55QK64X"></script>
 <?php wp_footer(); ?>
 </body>
-
 </html>
